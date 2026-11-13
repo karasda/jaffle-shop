@@ -7,7 +7,7 @@ require-dbt-version: ">=1.5.0"
 dbt-cloud:
   project-id: 275557 # Put your project id here
 
-profile: default # Put your profile here
+profile: ds-sandbox # Put your profile here
 
 model-paths: ["models"]
 analysis-paths: ["analyses"]
@@ -31,6 +31,9 @@ seeds:
       +enabled: "{{ var('load_source_data', false) }}"
 
 models:
+  +persist_docs:
+    relation: true
+    columns: true
   jaffle_shop:
     staging:
       +materialized: view
